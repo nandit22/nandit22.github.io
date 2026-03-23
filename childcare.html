@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Childcare Centres</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.08);
+    }
+    .info {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #fafafa;
+      font-weight: bold;
+    }
+    tr:nth-child(even) td {
+      background: #f9f9f9;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin-top: 10px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .controls {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #999;
+      cursor: pointer;
+      background: #f0f0f0;
+    }
+    button:hover {
+      background: #e2e2e2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Childcare Centres</h1>
+
+    <p class="info">
+      Click in any cell to edit the text. Changes stay while the page is open.
+      To save permanently, click “Generate HTML below”, then copy that code
+      back into your file.
+    </p>
+
+    <!-- Editable table -->
+    <table id="centres-table">
+      <thead>
+        <tr>
+          <th>Centre Name</th>
+          <th>Address</th>
+          <th>Tour</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody contenteditable="true">
+        <tr>
+          <td>Westmead Early Education Centre</td>
+          <td>106-108 Railway Street, Wentworthville, NSW, Australia, 2145</td>
+          <td>24th March 2026, Tuesday, 09:00AM</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Goodstart Early Education</td>
+          <td>90 Dunmore Street, Wentworthville, NSW 2145</td>
+          <td>24th March 2026, Tuesday, 11:30AM</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Friend Park Children's Centre</td>
+          <td>3 Mckern Street, Wentworthville, NSW 2145</td>
+          <td>23th March 2026, Monday, 10:00AM</td>
+          <td>
+Booking through phone: 02 87579074
+Reference POC: Sunny
+Tour guide: Gayathri
+Sessions: 11 hrs (7–6), 8 hrs (8:30–5:30)
+Email: cumberland.nsw.gov.au/enrol, enrol@cumberland.nsw.gov
+Contact: 87579074 / 0417011913
+4 meals per day
+Breastfed milk from mother, powder milk by centre (unless special needs)
+2 nappies per day from parents + Sudocrem, change 4 times a day ±2
+Extra nappies provided if specific requirements
+2 cots available
+Sheets changed daily and washed
+Minimum age: 10 months
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="controls">
+      <button onclick="addRow()">Add row</button>
+      <button onclick="deleteLastRow()">Delete last row</button>
+      <button onclick="exportTable()">Generate HTML below</button>
+    </div>
+
+    <textarea id="export-output"
+      placeholder="Generated table HTML will appear here..."></textarea>
+  </div>
+
+  <script>
+    function addRow() {
+      const tbody = document.querySelector('#centres-table tbody');
+      const row = document.createElement('tr');
+      row.innerHTML = '<td></td><td></td><td></td><td></td>';
+      tbody.appendChild(row);
+    }
+
+    function deleteLastRow() {
+      const tbody = document.querySelector('#centres-table tbody');
+      const rows = tbody.querySelectorAll('tr');
+      if (rows.length > 0) {
+        tbody.removeChild(rows[rows.length - 1]);
+      }
+    }
+
+    function exportTable() {
+      const table = document.getElementById('centres-table');
+      const html = table.outerHTML;
+      document.getElementById('export-output').value = html;
+    }
+  </script>
+</body>
+</html>
